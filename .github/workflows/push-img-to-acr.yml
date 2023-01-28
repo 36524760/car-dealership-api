@@ -18,5 +18,5 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - run: |
-          docker build --file ./docker-prod/Dockerfile -t ${{ secrets.ACR_LOGIN_SERVER }}:${{ github.sha }} .
-          docker push ${{ secrets.ACR_LOGIN_SERVER }}:${{ github.sha }}
+          docker build --file ./docker-prod/Dockerfile -t nodeapp:${{ github.sha }} .
+          docker push nodeapp:${{ github.sha }}
