@@ -2,7 +2,7 @@
 FROM node:16-alpine as Builder
 ENV NODE_ENV=production
 WORKDIR /usr/src/app
-COPY package*.json .
+COPY package*.json ./
 RUN apk update
 COPY . . 
 RUN npm install --omit=prod
