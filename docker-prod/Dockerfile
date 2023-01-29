@@ -22,6 +22,6 @@ ENV PORT 80
 EXPOSE 80
 RUN chown -R node /usr/src/app
 USER node
-CMD ["npm", "run", "start:prod"]
+ENTRYPOINT ["npm", "run", "start:prod"]
 
 
