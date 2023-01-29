@@ -17,11 +17,11 @@ jobs:
       - name: login in acr and push image
         uses: azure/docker-login@v1
         with:
-          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+          login-server: sdkjf9.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - run: |
           docker build --file ./docker-prod/Dockerfile -t nodeapp:1 .
-          docker tag nodeapp:1 ${{ secrets.ACR_LOGIN_SERVER }}:node
-          docker push ${{ secrets.ACR_LOGIN_SERVER }}:node
+          docker tag nodeapp:1 sdkjf9.azurecr.io:node
+          docker push sdkjf9.azurecr.io:node
