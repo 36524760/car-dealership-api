@@ -2,8 +2,8 @@ env:
   AZURE_WEBAPP_NAME: your-app-name  # set this to the name of your Azure Web App
 
 on:
-  push:
-    branches: [ "main" ]
+  # push:
+  #  branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -17,11 +17,10 @@ jobs:
       - name: login in acr and push image
         uses: azure/docker-login@v1
         with:
-          login-server: sdkjf9.azurecr.io
+          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - run: |
-          docker build --file ./docker-prod/Dockerfile -t nodeapp:1 .
-          docker tag nodeapp:1 sdkjf9.azurecr.io/node
-          docker push sdkjf9.azurecr.io/node
+          docker build --file ./docker-prod/Dockerfile -t ${{ secrets.ACR_LOGIN_SERVER }}/nodeapp:${{ github.sha }} .
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/nodeapp:${{ github.sha }}
