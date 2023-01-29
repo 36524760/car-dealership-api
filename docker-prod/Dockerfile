@@ -18,7 +18,8 @@ COPY --from=Builder usr/src/app/dist ./dist
 COPY --from=Builder usr/src/app/public ./public
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install --production --silent && mv node_modules ../
-EXPOSE 3000
+ENV PORT 80
+EXPOSE 80
 RUN chown -R node /usr/src/app
 USER node
 CMD ["npm", "run", "start:prod"]
