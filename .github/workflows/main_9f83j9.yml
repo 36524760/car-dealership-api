@@ -4,9 +4,6 @@
 name: Build and deploy container app to Azure Web App - 9f83j9
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
