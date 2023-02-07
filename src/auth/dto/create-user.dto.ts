@@ -5,7 +5,7 @@ export class CreateUserDto {
 
     @IsNotEmpty()
     @IsString()
-    readonly name: string
+    readonly username: string
     
     @IsNotEmpty()
     @IsString()

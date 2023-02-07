@@ -12,13 +12,13 @@ export class InMemoryUserRepository implements UserRepository {
 
     async createUser(user: IUser): Promise<IUser> {
         users.push(user);
-        const userFound = await this.findUserByName(user.name);
+        const userFound = await this.findUserByName(user.username);
         return userFound
     }
 
-    async findUserByName(name: string): Promise<IUser> {
+    async findUserByName(username: string): Promise<IUser> {
         const user = await users.find(
-            user => user.name === name
+            user => user.username === username
         );
         return user;
     }

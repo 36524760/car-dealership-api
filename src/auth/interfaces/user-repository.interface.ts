@@ -9,5 +9,5 @@ export interface UserRepository {
 
     createUser(user: IUser): Promise<IUser>;
 
-    findUserByName(name: string): Promise<IUser>;
+    findUserByName(username: string): Promise<IUser>;
 }

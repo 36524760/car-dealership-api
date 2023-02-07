@@ -13,8 +13,24 @@ export class AuthService {
         private readonly userRepository: UserRepository
     ) { }
 
+    async validateUser(authDto: AuthDto) {
+        const user = await this.userRepository.findUserByName(authDto.username);
+
+
+        if (!user || !await bcrypt.compare(
+            authDto.password,
+            user.password
+        )) {
+            return null;
+        }
+
+        const { password, ...result } = user;
+        console.log("user successfully logged in:", user)
+        return result;
+    }
+
     async login(authDto: AuthDto): Promise<User> {
-        const user = await this.userRepository.findUserByName(authDto.name);
+        const user = await this.userRepository.findUserByName(authDto.username);
 
         if (!user) {
             // throw new NotFoundException('username not found');
@@ -38,7 +54,7 @@ export class AuthService {
 
     async createUser(createUserDto: CreateUserDto) {
 
-        const user = await this.userRepository.findUserByName(createUserDto.name);
+        const user = await this.userRepository.findUserByName(createUserDto.username);
         if (user) {
             throw new BadRequestException('username already taken');
         }
