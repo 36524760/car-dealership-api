@@ -2,6 +2,8 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
+[![Docker Image CI](https://github.com/36524760/car-dealership-api/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/36524760/car-dealership-api/actions/workflows/docker-image.yml)
+
 # Car Dealership
 
 0. Clone repo
