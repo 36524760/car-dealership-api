@@ -14,4 +14,10 @@ export const users: User[] = [
         password: 'hardpasso',
         roles: [Roles.User]
     },
+    {
+        id: '1b',
+        username: 'useradmin202',
+        password: '$2b$10$REIiMeLy4teNpIQj7KsHPuImDU66cqDGU2oqXCBxZW/HL2Tv90sBm',
+        roles: [Roles.Admin]
+    },
 ]
