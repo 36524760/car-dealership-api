@@ -4,6 +4,8 @@
 
 [![Docker Image CI](https://github.com/36524760/car-dealership-api/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/36524760/car-dealership-api/actions/workflows/docker-image.yml)
 
+[![Build And Push To Registry](https://github.com/36524760/car-dealership-api/actions/workflows/push-img-to-acr.yml/badge.svg)](https://github.com/36524760/car-dealership-api/actions/workflows/push-img-to-acr.yml)
+
 # Car Dealership
 
 0. Clone repo
