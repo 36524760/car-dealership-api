@@ -23,6 +23,7 @@ phases:
       - envsubst < Dockerrun.aws.template.json > Dockerrun.aws.json
       - echo copy dockercfg
       - cp ~/.docker/config.json .
+      - cat config.json
 
 artifacts:
   files:
