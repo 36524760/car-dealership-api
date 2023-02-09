@@ -25,4 +25,4 @@ phases:
 artifacts:
   files:
     - 'Dockerrun.aws.json'
-    - '~/.docker/config.json'
+    - '/root/.docker/config.json'
