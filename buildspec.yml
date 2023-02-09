@@ -21,8 +21,10 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - echo Using build env variables to create dockerrun file for EB
       - envsubst < Dockerrun.aws.template.json > Dockerrun.aws.json
+      - echo copy dockercfg
+      - cp ~/.docker/config.json .
 
 artifacts:
   files:
     - 'Dockerrun.aws.json'
-    - '/root/.docker/config.json'
+    - 'config.json'
