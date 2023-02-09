@@ -6,8 +6,10 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - echo Looking for docker auth
+      - cat ~/.docker/config.json
+      - echo list files
       - ls -la
-      - echo ~/.docker/config.json
+      - cat /root/.docker/config.json
   build:
     commands:
       - echo Build started on `date`
@@ -21,7 +23,6 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - echo Using build env variables to create dockerrun file for EB
       - envsubst < Dockerrun.aws.template.json > Dockerrun.aws.json
-      - cat Dockerrun.aws.json
 
 artifacts:
   files:
