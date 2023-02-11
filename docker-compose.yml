@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  cardapp:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
+      HASH_SALT_ROUNDS: ${HASH_SALT_ROUNDS}
+    ports:
+      - 3000:3000
