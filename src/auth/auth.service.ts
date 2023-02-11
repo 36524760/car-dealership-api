@@ -6,6 +6,7 @@ import { User as IUser } from "./interfaces/user.interface";
 import * as bcrypt from "bcrypt";
 import { UserRepository, USER_REPOSITORY } from "./interfaces/user-repository.interface";
 import { JwtService } from "@nestjs/jwt";
+import config from "../config/config";
 
 @Injectable()
 export class AuthService {
@@ -56,11 +57,11 @@ export class AuthService {
         const newUser: IUser = {
             ...createUserDto,
             id: "d",
-            password: await bcrypt.hash(createUserDto.password, 10)
+            password: await bcrypt.hash(createUserDto.password, await config().saltOrRounds)
         };
 
         const createdUser = await this.userRepository.createUser(newUser);
-        // console.log("new User:", createdUser);
+        console.log("new User:", createdUser);
         return new User(createdUser);
     }
 }
