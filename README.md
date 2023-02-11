@@ -6,14 +6,25 @@
 
 [![Build And Push To Registry](https://github.com/36524760/car-dealership-api/actions/workflows/push-img-to-acr.yml/badge.svg)](https://github.com/36524760/car-dealership-api/actions/workflows/push-img-to-acr.yml)
 
-# Car Dealership
+# Car dealer App
+
+
 
 0. Clone repo
+
+`git clone this`
 
 1. install packages
 ```
 npm i
 ```
+
+1. *Important
+
+>copy `.env.template` and create a new `.env` file and fill it with your preferences
+
+>`jwt_expires_in` variable must be a string that indicates this time format: 10s 
+
 
 2. run app
 ```
@@ -33,51 +44,50 @@ http://localhost:3000/brands
 
 ---
 
-## Dockerize NestJs
+## Dockerize NestJs with docker compose
 
-0. Build the code
-
-```
-npm run build
-```
-
-1. Build the image
+1. Run dockercompose command
 
 ```
-docker build . -t nodeapp:1
-```
-
-2. run the app with the image id or the name
-
-  get image id
-```
-docker image ls
-```
-run 
-```
-docker run -d -p 3000:3000 nodeapp:1
+docker-compose up
 ```
 
 Go to browser and use localhost:3000
 
 3. Stop and delete the container
 
-to find the running container
+```
+docker-compose down
+```
+
+
+## Dockerize NestJs with multi stage
+
+This is a lightweight docker image
+
+```
+replace ./Dockerfile with ./docker-prod/Dockerfile
+
+```
+1. build image
+```
+docker build -t sometag:version --file ./docker-prod/Dockerfile .
+```
+
+2. Run container
+
+docker run -d -p 3000:3000 -m=120mb customimagenameorimageid:version
+
+
+*to find the running container
 ```
 docker ps 
 ```
 copy the hash example: abs43a6
 
-and delete it
+*and delete it
 
 ```
 docker rm -f abs43a6
 ```
 
-
-## Dockerize NestJs with multi stage
-```
-replace ./Dockerfile with ./docker-prod/Dockerfile
-```
-
-In this case there is no need to execute __`npm run build`__, just build the image and run it
