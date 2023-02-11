@@ -1,27 +1,23 @@
-# FROM node:lts-alpine as Builder
 FROM node:16-alpine as Builder
-ENV NODE_ENV=production
+RUN apk update
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN apk update
+RUN npm install --silent
 COPY . . 
-RUN npm install --omit=prod
 RUN npm run build
 
 
-# FROM node:lts-alpine this is more heavyweight img
+
 FROM node:16-alpine
-# ENV NODE_ENV=production
-WORKDIR /usr/src/app
 RUN apk update
-COPY --from=Builder usr/src/app/dist ./dist
-COPY --from=Builder usr/src/app/public ./public
+WORKDIR /usr/src/app
+ENV NODE_ENV=production
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install --production --silent && mv node_modules ../
+COPY --from=Builder usr/src/app/dist ./dist
+COPY --from=Builder usr/src/app/public ./public
 ENV PORT 3000
 EXPOSE 3000
 RUN chown -R node /usr/src/app
 USER node
 ENTRYPOINT ["npm", "run", "start:prod"]
-
-
