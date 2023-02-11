@@ -24,5 +24,8 @@
 /dist
 ./test
 /test
+.github
+buildspec.yml
+Dockerrun.aws.template.json
 LICENSE
 README.md
