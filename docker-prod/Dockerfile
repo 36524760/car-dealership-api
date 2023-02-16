@@ -20,4 +20,4 @@ ENV PORT 3000
 EXPOSE 3000
 RUN chown -R node /usr/src/app
 USER node
-ENTRYPOINT ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start:prod"]
