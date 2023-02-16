@@ -28,3 +28,4 @@ artifacts:
   files:
     - 'Dockerrun.aws.json'
     - 'config.json'
+  name: nestjs-cardealer-artifact
