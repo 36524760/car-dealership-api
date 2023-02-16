@@ -28,4 +28,4 @@ artifacts:
   files:
     - 'Dockerrun.aws.json'
     - 'config.json'
-  name: nestjs-cardealer-artifact
+  name: car-app-$(date +%Y-%m-%d)
